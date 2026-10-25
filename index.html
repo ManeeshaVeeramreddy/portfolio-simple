@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sign in · Maneesha Reddy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="auth-page">
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+  <div class="blob b3"></div>
+
+  <main class="card">
+    <div class="logo" aria-hidden="true">M</div>
+    <div id="msg" class="msg" role="alert" hidden></div>
+
+    <!-- LOGIN -->
+    <section data-view="login">
+      <h1>Welcome back <span aria-hidden="true">👋</span></h1>
+      <p class="sub">Sign in to see Maneesha's portfolio.</p>
+      <form id="login-form" novalidate>
+        <label for="l-user">Username</label>
+        <input id="l-user" type="text" autocomplete="username" required />
+        <label for="l-pass">Password</label>
+        <input id="l-pass" type="password" autocomplete="current-password" required />
+        <button class="btn primary" type="submit">Sign in</button>
+      </form>
+      <div class="divider"><span>or</span></div>
+      <div id="google-btn" class="google-holder"></div>
+      <p class="switch">New here? <a href="#" data-go="register">Create an account</a></p>
+    </section>
+
+    <!-- REGISTER -->
+    <section data-view="register" hidden>
+      <h1>Create account <span aria-hidden="true">✨</span></h1>
+      <p class="sub">You'll set up two-step verification next.</p>
+      <form id="register-form" novalidate>
+        <label for="r-user">Username</label>
+        <input id="r-user" type="text" autocomplete="username" required />
+        <label for="r-pass">Password</label>
+        <input id="r-pass" type="password" autocomplete="new-password" minlength="8" required />
+        <button class="btn primary" type="submit">Continue</button>
+      </form>
+      <p class="switch">Already have an account? <a href="#" data-go="login">Sign in</a></p>
+    </section>
+
+    <!-- MFA SETUP -->
+    <section data-view="mfa-setup" hidden>
+      <h1>Secure your account <span aria-hidden="true">🔐</span></h1>
+      <p class="sub">Scan this QR code with Google Authenticator, Authy or Microsoft Authenticator.</p>
+      <div id="qr" class="qr"></div>
+      <p class="hint">Can't scan? Type this key into the app:</p>
+      <p class="secret" id="secret"></p>
+      <form id="setup-form" novalidate>
+        <label for="s-code">Enter the 6-digit code from the app</label>
+        <input id="s-code" class="otp" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="7" required />
+        <button class="btn primary" type="submit">Turn on &amp; continue</button>
+      </form>
+    </section>
+
+    <!-- MFA VERIFY -->
+    <section data-view="mfa-verify" hidden>
+      <h1>Two-step check <span aria-hidden="true">🛡️</span></h1>
+      <p class="sub">Open your authenticator app and enter the current 6-digit code.</p>
+      <form id="verify-form" novalidate>
+        <label for="v-code">Verification code</label>
+        <input id="v-code" class="otp" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="7" required />
+        <button class="btn primary" type="submit">Verify</button>
+      </form>
+      <p class="switch"><a href="#" data-go="login">Back to sign in</a></p>
+    </section>
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script src="totp.js"></script>
+  <script src="auth.js"></script>
+</body>
+</html>
